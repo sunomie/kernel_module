@@ -1,10 +1,9 @@
 obj-m := basic.o
 
+KDIR = /usr/src/linux-headers-4.4.0-79-generic
 
-KERNEL_DIR = /lib/modules/3.2.0-25-generic/build
-PWD := $(shell pwd)
 all:
- $(MAKE) -C $(KERNEL_DIR) SUBDIRS=$(PWD) modules
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
 
 clean:
- rm -rf *.o *.ko *.mod.* *.symvers *.order *~
+	rm -rf *.o *.ko *.mod.* *.symvers *.order *~

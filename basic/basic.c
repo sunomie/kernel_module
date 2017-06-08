@@ -14,3 +14,7 @@ static void driver_exit(void){
 module_init(driver_entry);
 module_exit(driver_exit);
 
+//Make kernels like Ubuntu not freak out and reject the module
+// with dmsg showing module license 'unspecified' taints kernel.
+//  and module verification failed: signature and/or required key missing - tainting kernel
+MODULE_LICENSE("GPL");
