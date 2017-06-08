@@ -1,5 +1,5 @@
-#include <linux/init.h>
-#include <linux/module.h>
+#include <linux/init.h> // Linux init stuff
+#include <linux/module.h> // Linux kernel module stuff
 
 static int driver_entry(void){
   printk(KERN_ALERT "basic kernel module: Entry");
