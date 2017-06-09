@@ -8,20 +8,20 @@
 int param_var = 0;
 int param_array_var[3] = {0,1,2};
 
-static int driver_entry(void){
+static int module_entry(void){
   printk(KERN_ALERT "basic kernel module: Entry");
   return 0;
 }
 
-static void driver_exit(void){
+static void module_exit(void){
   printk(KERN_ALERT "basic kernel module: Exit");
   printk(KERN_ALERT "basic kernel module: param = %d", param_var);
   printk(KERN_ALERT "basic kernel module: param_array = [%d.%d,%d]", param_array_var[0],param_array_var[1],param_array_var[2]);
 }
 
 //Inform the kernel where to start and stop with our module/driver
-module_init(driver_entry);
-module_exit(driver_exit);
+module_init(module_entry);
+module_exit(module_exit);
 
 //Make kernels like Ubuntu not freak out and reject the module
 // with dmsg showing module license 'unspecified' taints kernel.

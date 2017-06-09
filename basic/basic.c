@@ -1,18 +1,18 @@
 #include <linux/init.h> // Linux init stuff
 #include <linux/module.h> // Linux kernel module stuff
 
-static int driver_entry(void){
+static int module_entry(void){
   printk(KERN_ALERT "basic kernel module: Entry");
   return 0;
 }
 
-static void driver_exit(void){
+static void module_exit(void){
   printk(KERN_ALERT "basic kernel module: Exit");
 }
 
 //Inform the kernel where to start and stop with our module/driver
-module_init(driver_entry);
-module_exit(driver_exit);
+module_init(module_entry);
+module_exit(module_exit);
 
 //Make kernels like Ubuntu not freak out and reject the module
 // with dmsg showing module license 'unspecified' taints kernel.
