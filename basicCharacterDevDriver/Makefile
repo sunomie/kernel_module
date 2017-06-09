@@ -1,10 +1,10 @@
 obj-m := solidusmodule.o
 
 
-KERNEL_DIR = /lib/modules/3.2.0-25-generic/build
+KERNEL_DIR = /usr/src/linux-headers-$(shell uname -r)
 PWD := $(shell pwd)
 all:
- $(MAKE) -C $(KERNEL_DIR) SUBDIRS=$(PWD) modules
+	$(MAKE) -C $(KERNEL_DIR) SUBDIRS=$(PWD) modules
 
 clean:
- rm -rf *.o *.ko *.mod.* *.symvers *.order *~
+	rm -rf *.o *.ko *.mod.* *.symvers *.order *~

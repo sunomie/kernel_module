@@ -1,10 +1,16 @@
-#include 
-#include 
-#include       // file_operations structure- which of course allows use to open/close,read/write to device
-#include       //this is a char driver; makes cdev available
-#include  //used to access semaphores; sychronizatoin behaviors
-#include      //copy_to_user;copy_from_user
+// Build and run this with:
+// make clean; make; sudo rmmod solidusmodule.ko; sleep 1; sudo insmod solidusmodule.ko; sleep 1; dmesg | grep solidus
+// sudo mknod /dev/solidusdevice c 245 0
+// sudo chmod 777 /dev/solidusdevice
+// ls -l /dev/solidusdevice
+// Use usingBasicCharDevDriver to interface with the kernel driver from userspace
 
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/fs.h> 			// file_operations structure- which of course allows use to open/close,read/write to device
+#include <linux/cdev.h>			//this is a char driver; makes cdev available
+#include <linux/semaphore.h>  	//used to access semaphores; sychronizatoin behaviors
+#include <asm/uaccess.h>     	//copy_to_user;copy_from_user (moves data to/from user/kernel space)
 
 //(1) Create a structure for our fake device
 struct fake_device {
